@@ -1,0 +1,8 @@
+.herobanner {
+  background-image: url("../assets/tennis-unsplash.jpg");
+  width: 100vw;
+  height: 40vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
