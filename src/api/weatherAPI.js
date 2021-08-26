@@ -10,10 +10,14 @@ export const getWeathers = async function () {
     .then((response) => response.json())
     .then((data) => data);
 
+  console.log("date", data);
+
   const nextWeekRaw = data.daily;
   let nextWeekFormat = nextWeekRaw.map(
-    ({ dt, feels_like, wind_speed, weather }) => ({
+    ({ dt, sunrise, sunset, feels_like, wind_speed, weather }) => ({
       dt: dateReadable(dt),
+      sunrise: timeReadable(sunrise),
+      sunset: timeReadable(sunset),
       feels_like,
       wind_speed,
       weather,
@@ -24,6 +28,13 @@ export const getWeathers = async function () {
 };
 
 const dateReadable = function (unixDateTime) {
-  let date = new Date(unixDateTime * 1000).toDateString();
+  let date = new Date(unixDateTime * 1000).toDateString({ hour12: true });
   return date;
+};
+
+const timeReadable = function (unixDateTime) {
+  let time = new Date(unixDateTime * 1000).toLocaleTimeString({
+    hour12: true,
+  });
+  return time;
 };

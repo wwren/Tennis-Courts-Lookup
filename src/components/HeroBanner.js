@@ -1,11 +1,13 @@
 import "./HeroBanner.css";
-import { Row, Col } from "antd";
 
-export function HeroBanner({ weather }) {
+import { WeatherCard } from "./WeatherCard";
+
+export function HeroBanner({ todayWeather }) {
   return (
     <div className="herobanner">
-      <div className="weather_today"></div>
-      <div className="weather_week"></div>
+      <div className="weather_today_container">
+        <WeatherCard weather={todayWeather} isToday={true} />
+      </div>
     </div>
   );
 }
