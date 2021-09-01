@@ -89,3 +89,7 @@
 .weather_board .weather.week .location {
   display: none;
 }
+
+.weather:hover {
+  cursor: pointer;
+}
