@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Table, Tag } from "antd";
 import "./TimeTable.css";
 

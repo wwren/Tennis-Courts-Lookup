@@ -1,9 +1,27 @@
 import { useEffect, useState } from "react";
 
-export function WeatherCard({ weather, isToday }) {
+export function WeatherCard({ weather, isToday, handleClick }) {
   const [date, setDate] = useState("");
   const [icon, setIcon] = useState("");
   const [temp, setTemp] = useState("");
+
+  // useEffect(() => {
+  //   if (weather.dt) {
+  //     let day = weather.dt.split(" ")[2];
+  //     let month = weather.dt.split(" ")[1];
+  //     let dayInWeek = weather.dt.split(" ")[0];
+  //     setDate(`${dayInWeek}, ${day} ${month}`);
+  //   }
+  //   if (weather.weather) {
+  //     console.log("icon", weather.weather[0].icon);
+  //     setIcon(weather.weather[0].icon);
+  //   }
+
+  //   if (weather.sunrise && weather.sunset) {
+  //     let day = isDay(weather.sunset, weather.sunrise);
+  //     day ? setTemp(weather.feels_like.day) : setTemp(weather.feels_like.night);
+  //   }
+  // }, [weather.dt, weather.weather, weather.sunrise, weather.sunset]);
 
   useEffect(() => {
     if (weather.dt) {
@@ -13,7 +31,6 @@ export function WeatherCard({ weather, isToday }) {
       setDate(`${dayInWeek}, ${day} ${month}`);
     }
     if (weather.weather) {
-      console.log("icon", weather.weather[0].icon);
       setIcon(weather.weather[0].icon);
     }
 
@@ -21,28 +38,35 @@ export function WeatherCard({ weather, isToday }) {
       let day = isDay(weather.sunset, weather.sunrise);
       day ? setTemp(weather.feels_like.day) : setTemp(weather.feels_like.night);
     }
-  }, [weather.dt, weather.weather, weather.sunrise, weather.sunset]);
+  }, [weather]);
 
   return (
     <>
-      <div className={`weather ${isToday ? "today" : "week"}`}>
+      <div
+        className={`weather ${isToday ? "today" : "week"}`}
+        id={weather.dtRaw}
+        onClick={(e) => handleClick(e)}
+      >
         <div className="image">
-          <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}></img>
+          <img
+            src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+            alt={icon}
+          ></img>
         </div>
         <div className="location">
-          <span class="iconify" data-icon="carbon:location-current"></span>
+          <span className="iconify" data-icon="carbon:location-current"></span>
           <span>Glebe, NSW</span>
         </div>
         <div>
-          <span class="iconify" data-icon="uil:calender"></span>
+          <span className="iconify" data-icon="uil:calender"></span>
           <span>{date}</span>
         </div>
         <div>
-          <span class="iconify" data-icon="wi:thermometer"></span>
+          <span className="iconify" data-icon="wi:thermometer"></span>
           <span>{temp} ℃</span>
         </div>
         <div>
-          <span class="iconify" data-icon="icon-park-outline:wind"></span>
+          <span className="iconify" data-icon="icon-park-outline:wind"></span>
           <span>{weather.wind_speed} metre/sec</span>
         </div>
       </div>

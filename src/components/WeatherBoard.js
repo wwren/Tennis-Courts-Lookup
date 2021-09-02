@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
 import { WeatherCard } from "./WeatherCard";
 
-export function WeatherBoard({ weekWeather }) {
+export function WeatherBoard({ weekWeather, handleClick }) {
   return (
     <>
       <div className="weather_board">
         {weekWeather.map((ele) => (
-          <WeatherCard weather={ele} isToday={false} />
+          <WeatherCard
+            key={ele.dtRaw}
+            weather={ele}
+            isToday={false}
+            handleClick={handleClick}
+          />
         ))}
       </div>
     </>

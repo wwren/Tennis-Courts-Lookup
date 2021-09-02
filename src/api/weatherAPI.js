@@ -10,11 +10,10 @@ export const getWeathers = async function () {
     .then((response) => response.json())
     .then((data) => data);
 
-  console.log("date", data);
-
   const nextWeekRaw = data.daily;
   let nextWeekFormat = nextWeekRaw.map(
     ({ dt, sunrise, sunset, feels_like, wind_speed, weather }) => ({
+      dtRaw: dt,
       dt: dateReadable(dt),
       sunrise: timeReadable(sunrise),
       sunset: timeReadable(sunset),
