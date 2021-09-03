@@ -57,8 +57,7 @@ const findAvailableSlotperFacility = async (facility, url, browser) => {
 
       return {
         key: facility.idx,
-        facilityLink: url,
-        facilityName: facility.name,
+        facilityName: `${facility.name}_${url}`,
         availableSlot: availableSlot,
       };
     },
