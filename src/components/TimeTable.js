@@ -6,6 +6,15 @@ const columns = [
     title: "Facility",
     dataIndex: "facilityName",
     key: "facilityName",
+    render: (records) => {
+      let link = records.split("_")[1];
+      let name = records.split("_")[0];
+      return (
+        <a href={link} target="_blank">
+          {name}
+        </a>
+      );
+    },
   },
   {
     title: "Available Slots",
@@ -29,10 +38,16 @@ const columns = [
   },
 ];
 
-export function TimeTable({ locations }) {
+export function TimeTable({ locations, isLoading }) {
   return (
     <>
-      <Table dataSource={locations} columns={columns} pagination={false} />;
+      <Table
+        dataSource={locations}
+        columns={columns}
+        pagination={false}
+        loading={isLoading}
+      />
+      ;
     </>
   );
 }
