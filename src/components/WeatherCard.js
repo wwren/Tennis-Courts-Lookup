@@ -60,8 +60,6 @@ export function WeatherCard({ weather, isToday, handleClick }) {
         <div>
           <span className="iconify" data-icon="uil:calender"></span>
           <span>{date}</span>
-          {/* <span>{date.split(",")[0]}, </span>
-          <span>{date.split(",")[1]}</span> */}
         </div>
         <div>
           <span className="iconify" data-icon="wi:thermometer"></span>

@@ -10,7 +10,7 @@ const columns = [
       let link = records.split("_")[1];
       let name = records.split("_")[0];
       return (
-        <a href={link} target="_blank">
+        <a href={link} target="_blank" rel="noreferrer">
           {name}
         </a>
       );

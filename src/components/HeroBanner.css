@@ -133,6 +133,17 @@
   left: 0%;
 }
 
+.focus::before {
+  content: "";
+  width: 100%;
+  height: 7px;
+  background: linear-gradient(to left, #70e1f5, #ffd194);
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 @media only screen and (min-width: 768px) {
   .weather.today .image {
     flex-basis: 125px;
