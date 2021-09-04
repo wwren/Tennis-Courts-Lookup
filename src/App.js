@@ -5,6 +5,7 @@ import { getTimetable } from "./api/timetableAPI";
 import { HeroBanner } from "./components/HeroBanner";
 import { WeatherBoard } from "./components/WeatherBoard";
 import { Footer } from "./components/Footer";
+import { Nav } from "./components/Nav";
 import { TimeTable } from "./components/TimeTable";
 import { data, locations } from "./apisamples.js";
 
@@ -91,6 +92,7 @@ function App() {
 
   return (
     <>
+      <Nav />
       <HeroBanner todayWeather={todayWeather} handleClick={handleClick} />
       <WeatherBoard weekWeather={weekWeather} handleClick={handleClick} />
       <TimeTable locations={locationList} isLoading={isLoading} />

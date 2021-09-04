@@ -1,10 +1,25 @@
+nav {
+  background-color: #191919;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: fit-content;
+  padding: 6px 0;
+  letter-spacing: 2px;
+  text-align: center;
+  z-index: 2;
+}
+
 footer {
+  border-top: 1px solid #e7e7e7;
   background-color: #191919;
   color: white;
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   height: 60px;
   text-align: center;
   display: flex;

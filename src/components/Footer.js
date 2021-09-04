@@ -1,10 +1,10 @@
-import "./Footer.css";
+import "./NavFooter.css";
 
 export function Footer() {
   return (
     <footer>
       <div>
-        <span>Copyright &copy;</span> Ran's Tennis Court Timetable 2021
+        <span>Copyright &copy;</span> Ran's Tennis Court Lookup 2021
       </div>
       <div className="footer">
         <div>

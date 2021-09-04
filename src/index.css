@@ -1,7 +1,7 @@
 @import "~antd/dist/antd.css";
 
 body {
-  margin: 0;
+  overflow-x: hidden;
   font-family: "Kanit", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

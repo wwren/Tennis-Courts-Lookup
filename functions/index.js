@@ -42,8 +42,7 @@ const findAvailableSlotperFacility = async (facility, url, browser) => {
       if (tdBlanks.length == 0) {
         return {
           key: facility.idx,
-          facilityLink: url,
-          facilityName: facility.name,
+          facilityName: `${facility.name}_${url}`,
           availableSlot: [],
         };
       }

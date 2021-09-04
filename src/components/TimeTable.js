@@ -42,12 +42,12 @@ export function TimeTable({ locations, isLoading }) {
   return (
     <>
       <Table
+        style={{ paddingBottom: "80px" }}
         dataSource={locations}
         columns={columns}
         pagination={false}
         loading={isLoading}
       />
-      ;
     </>
   );
 }

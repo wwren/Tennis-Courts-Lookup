@@ -1,11 +1,12 @@
 .herobanner {
-  /* background-image: url("../assets/tennis-unsplash.jpg"); */
-  background-image: url("../assets/t4.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)),
+    url("../assets/t4.jpg");
   width: 100vw;
   height: 40vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  color: #ffffff;
 }
 
 .weather {
@@ -15,18 +16,21 @@
   overflow: hidden;
 }
 
-.weather > * {
-  flex-basis: 120px;
+.weather.today .image {
+  flex-basis: 100%;
+}
+
+.weather.today :not(.image) {
+  flex-basis: 50%;
 }
 
 .weather img {
-  width: 55%;
+  width: 100%;
   height: auto;
 }
 
 .weather .image {
   text-align: center;
-  flex-basis: 170px;
 }
 .weather span {
   display: inline-block;
@@ -39,6 +43,8 @@
   max-width: 20px;
   max-height: 20px;
   margin-right: 6px;
+  min-width: 15px;
+  min-height: 15px;
 }
 
 .herobanner .weather_today_container {
@@ -47,6 +53,7 @@
   transform: translateX(-50%);
   position: absolute;
   max-width: 1200px;
+  top: 30px;
 }
 
 .today {
@@ -59,14 +66,14 @@
 }
 
 .today img {
-  width: 6vw;
+  width: 13vw;
 }
 
 .weather_board {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  width: 80vw;
+  width: 95vw;
   border-radius: 20px;
   box-shadow: 4px 4px 20px grey;
   height: 30vh;
@@ -76,12 +83,24 @@
   transform: translateX(-50%);
   top: 24%;
   max-width: 1200px;
+  overflow-x: auto;
 }
 
 .weather_board > * {
-  flex-basis: calc(100% / 7);
+  flex-direction: row;
+  min-height: 50px;
+  justify-content: space-between;
+  align-items: center;
   font-size: smaller;
   border-right: 0.5px dashed grey;
+}
+
+.weather_board .weather :not(.image) {
+  flex-basis: 25%;
+}
+
+.weather_board .image {
+  max-width: 45px;
 }
 
 .weather_board :last-child {
@@ -111,5 +130,45 @@
 
 .weather:hover::before {
   width: 100%;
-  height: 250%;
+  height: 200%;
+}
+
+@media only screen and (min-width: 768px) {
+  .weather.today .image {
+    flex-basis: 125px;
+  }
+
+  .weather.today img {
+    width: 55%;
+  }
+
+  .today img {
+    width: 6vw;
+  }
+
+  .weather_board {
+    flex-direction: row;
+    width: 80vw;
+  }
+
+  .weather_board > * {
+    flex-basis: calc(100% / 7);
+    flex-direction: column;
+  }
+
+  .weather_board .weather > * {
+    width: 100%;
+  }
+
+  .weather_board .image {
+    max-width: 70px;
+  }
+
+  .weather_board .weather img {
+    width: 100%;
+  }
+
+  .weather_board .weather :not(.image) {
+    flex-basis: 15%;
+  }
 }
