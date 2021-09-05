@@ -12,6 +12,10 @@ nav {
   z-index: 2;
 }
 
+nav > * {
+  color: white;
+}
+
 footer {
   border-top: 1px solid #e7e7e7;
   background-color: #191919;

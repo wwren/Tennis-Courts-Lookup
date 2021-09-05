@@ -53,7 +53,8 @@
   transform: translateX(-50%);
   position: absolute;
   max-width: 1200px;
-  top: 30px;
+  /* top: 30px; */
+  top: 60px;
 }
 
 .today {
@@ -76,12 +77,12 @@
   width: 95vw;
   border-radius: 20px;
   box-shadow: 4px 4px 20px grey;
-  height: 30vh;
+  height: 25vh;
   background: white;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 24%;
+  top: 28%;
   max-width: 1200px;
   overflow-x: auto;
 }
@@ -115,24 +116,6 @@
   cursor: pointer;
 }
 
-/* Hover animation */
-.weather::before {
-  content: "";
-  width: 0%;
-  height: 7px;
-  background: linear-gradient(to left, #70e1f5, #ffd194);
-  border-radius: 10px;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transition: all 0.5s;
-}
-
-.weather:hover::before {
-  width: 100%;
-  left: 0%;
-}
-
 .focus::before {
   content: "";
   width: 100%;
@@ -158,8 +141,10 @@
   }
 
   .weather_board {
+    height: 30vh;
     flex-direction: row;
     width: 80vw;
+    top: 33vh;
   }
 
   .weather_board > * {
@@ -181,5 +166,29 @@
 
   .weather_board .weather :not(.image) {
     flex-basis: 15%;
+  }
+
+  /* Hover animation */
+  .weather::before {
+    content: "";
+    width: 0%;
+    height: 7px;
+    background: linear-gradient(to left, #70e1f5, #ffd194);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transition: all 0.5s;
+  }
+
+  .weather:hover::before {
+    width: 100%;
+    left: 0%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .weather_board {
+    top: 28vh;
   }
 }
