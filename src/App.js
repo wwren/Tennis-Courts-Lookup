@@ -45,20 +45,16 @@ function App() {
   //  Helper function - Set focus effect
   // =================================================================
   const setFocusEffect = (eleId) => {
-    console.log("focus.current", focus.current);
     let prevFocus = document.getElementById(focus.current);
     if (prevFocus) {
       prevFocus.classList.remove("focus");
-      console.log("prevFocus", prevFocus);
     }
 
     focus.current = eleId;
     let focusEle = document.getElementById(focus.current);
     if (focusEle) {
       focusEle.classList.add("focus");
-      console.log("focusEle", focusEle);
     } else {
-      console.log("focusEle is what", focusEle);
     }
   };
 

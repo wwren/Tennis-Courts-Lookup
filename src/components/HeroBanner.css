@@ -116,6 +116,24 @@
   cursor: pointer;
 }
 
+/* Hover animation */
+.weather::before {
+  content: "";
+  width: 0%;
+  height: 7px;
+  background: linear-gradient(to left, #70e1f5, #ffd194);
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transition: all 0.5s;
+}
+
+.weather:hover::before {
+  width: 100%;
+  left: 0%;
+}
+
 .focus::before {
   content: "";
   width: 100%;
@@ -166,24 +184,6 @@
 
   .weather_board .weather :not(.image) {
     flex-basis: 15%;
-  }
-
-  /* Hover animation */
-  .weather::before {
-    content: "";
-    width: 0%;
-    height: 7px;
-    background: linear-gradient(to left, #70e1f5, #ffd194);
-    border-radius: 10px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transition: all 0.5s;
-  }
-
-  .weather:hover::before {
-    width: 100%;
-    left: 0%;
   }
 }
 
