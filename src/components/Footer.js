@@ -10,7 +10,7 @@ export function Footer() {
         <div>
           <a
             id="profile-link"
-            href="https://github.com/wwren"
+            href="https://github.com/wwren/Tennis-Courts-Lookup"
             target="_blank"
             rel="noreferrer"
           >
