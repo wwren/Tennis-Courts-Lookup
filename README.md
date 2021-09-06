@@ -4,8 +4,6 @@
 
 ### Table of Contents
 
-You're sections headers will be used to reference location of destination.
-
 - [Description](#description)
 - [License](#license)
 - [Author Info](#author-info)
