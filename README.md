@@ -5,6 +5,8 @@
 ### Table of Contents
 
 - [Description](#description)
+- [Obstacles](#obstacles)
+- [Technologies](#technologies)
 - [License](#license)
 - [Author Info](#author-info)
 
@@ -25,7 +27,13 @@ It can be accessed at the link below.
 
 > https://tennis-timetable.web.app
 
-#### Technologies
+## Obstacles
+
+The tennis court websites do not provide public APIs that allow me to query available time, so I have to develop a script to scrape their available time. The response from scraping resolves (when success) much slower than the call to weather API, so I have to find ways to optimise the performance.
+
+Solution: I cached the responses from scraping API to the browser side (localstorage) for 2 mins. Every time a date is selected, the app will first check if that date had been queried recently. If so, the app will return the cached information. Otherwise, it will call API and later cache the information.
+
+## Technologies
 
 - Frontend: React.js, JavaScript, HTML & CSS
 - Backend: Node.js

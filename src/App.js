@@ -10,7 +10,7 @@ import { TimeTable } from "./components/TimeTable";
 // import { data, locations } from "./apisamples.js";
 
 function App() {
-  const CACHE_MINUTE = 10;
+  const CACHE_MINUTE = 2;
   const [todayWeather, setTodayWeather] = useState({});
   const [weekWeather, setWeekWeather] = useState([]);
   const [locationList, setLocationList] = useState([]);
