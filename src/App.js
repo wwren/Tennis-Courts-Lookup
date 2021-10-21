@@ -10,37 +10,13 @@ import { TimeTable } from "./components/TimeTable";
 // import { data, locations } from "./apisamples.js";
 
 function App() {
+  const CACHE_MINUTE = 10;
   const [todayWeather, setTodayWeather] = useState({});
   const [weekWeather, setWeekWeather] = useState([]);
   const [locationList, setLocationList] = useState([]);
   const focus = useRef("");
-  const [apiDate, setApiDate] = useState("");
+  const [apiDate, setApiDate] = useState(undefined);
   const [isLoading, setIsLoading] = useState(true);
-
-  // // =================================================================
-  // // Mock
-  // // =================================================================
-  // const [isLoading, setIsLoading] = useState(false);
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     // weather
-  //     setTodayWeather(data[0]);
-  //     setWeekWeather(data.slice(1));
-  //     // timetable
-  //     setLocationList(locations);
-  //   }
-  //   fetchData();
-  //   // set initial focus
-  //   setFocusEffect(data[0].dtRaw);
-  // }, []);
-
-  // const handleClick = (e) => {
-  //   let closestWrapper = e.target.closest(".weather");
-  //   if (!isNaN(closestWrapper.id)) {
-  //     setFocusEffect(closestWrapper.id);
-  //   }
-  // };
-
   // =================================================================
   //  Helper function - Set focus effect
   // =================================================================
@@ -54,7 +30,6 @@ function App() {
     let focusEle = document.getElementById(focus.current);
     if (focusEle) {
       focusEle.classList.add("focus");
-    } else {
     }
   };
 
@@ -88,17 +63,22 @@ function App() {
   // =================================================================
   useEffect(() => {
     async function fetchData() {
-      // weather
-      let weather = await getWeathers();
-      setTodayWeather(weather[0]);
-      setWeekWeather(weather.slice(1));
-      // timetable
-      let date = apiFormatDate(new Date());
-      let location = await getTimetable(date);
-      setIsLoading(false);
-      setLocationList(location);
-      // set initial focus
-      setFocusEffect(weather[0].dtRaw);
+      try {
+        // weather api resolve quicker so seperate the resolve
+        const weather = await getWeathers();
+        setTodayWeather(weather[0]);
+        setWeekWeather(weather.slice(1));
+
+        let date = apiFormatDate(new Date());
+        const location = await getTimetable(date);
+        setIsLoading(false);
+        setLocationList(location);
+        setFocusEffect(weather[0].dtRaw);
+
+        addToLocalStorage(date, location);
+      } catch (e) {
+        console.error("On load not fetching API correctly");
+      }
     }
     fetchData();
   }, []);
@@ -108,12 +88,36 @@ function App() {
   // =================================================================
   useEffect(() => {
     async function fetchData() {
-      let location = await getTimetable(apiDate);
-      setIsLoading(false);
-      setLocationList(location);
+      let storedTimeTable = localStorage.getItem(apiDate)
+        ? JSON.parse(localStorage.getItem(apiDate))
+        : null;
+      if (
+        storedTimeTable != null &&
+        storedTimeTable.expiration > new Date().getTime()
+      ) {
+        setIsLoading(false);
+        setLocationList(storedTimeTable.items);
+      } else {
+        let location = await getTimetable(apiDate);
+        setIsLoading(false);
+        setLocationList(location);
+
+        addToLocalStorage(apiDate, location);
+      }
     }
-    fetchData();
+
+    if (apiDate != undefined) {
+      fetchData();
+    }
   }, [apiDate]);
+
+  const addToLocalStorage = (apiDate, location) => {
+    let locationCache = {
+      items: location,
+      expiration: new Date().getTime() + CACHE_MINUTE * 60 * 1000,
+    };
+    localStorage.setItem(apiDate, JSON.stringify(locationCache));
+  };
 
   return (
     <>

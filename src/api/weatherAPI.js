@@ -22,7 +22,6 @@ export const getWeathers = async function () {
       weather,
     })
   );
-
   return nextWeekFormat;
 };
 
